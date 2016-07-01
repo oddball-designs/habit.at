@@ -7,3 +7,15 @@ FONT:
 <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
 
 font-family: 'Shadows Into Light Two', cursive;
+
+Tasks:
+
+Server
+  - routes
+Database setup 
+ - migrations
+ - seed data
+HTML
+Bootstrap / CSS
+Handlebars
+javascript/jquery
