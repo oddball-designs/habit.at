@@ -1,0 +1,24 @@
+{
+  "name": "habit.at",
+  "version": "1.0.0",
+  "description": "Q2_project",
+  "main": "knexfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oddball-designs/habit.at.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oddball-designs/habit.at/issues"
+  },
+  "homepage": "https://github.com/oddball-designs/habit.at#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "knex": "^0.11.7",
+    "pg": "^6.0.1"
+  }
+}
