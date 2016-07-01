@@ -12,10 +12,20 @@ Tasks:
 
 Server
   - routes
-Database setup 
+Database setup
  - migrations
  - seed data
 HTML
 Bootstrap / CSS
 Handlebars
 javascript/jquery
+
+
+API endpoints
+
+/ >> renders index (has login and dashboard) (post from here makes new household OR new user)
+GATED UNLESS YOU ARE LOGGED IN
+/households/id (get/put/delete)
+/households/id/task (get/post/put/delete)//see all the tasks for a household/make new task/edit task/delete task
+/users/id (get/put/delete) // account information, avatar if we make it
+/users/id/tasks // (get/put) tasks for specific user
