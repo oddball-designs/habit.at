@@ -8,9 +8,9 @@ exports.up = function(knex, Promise) {
     table.string('username');
     table.string('password');
     table.string('email');
-    table.integer('phone_number');
+    table.string('phone_number');
     table.boolean('is_Admin');
-    table.integer('households_id').index().references('id').inTable('households');
+    table.integer('household_id');
   });
 };
 
