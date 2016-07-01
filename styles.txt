@@ -1,0 +1,9 @@
+COLORS
+https://color.adobe.com/Ventana-Azul-color-theme-2159606/edit/?copy=true
+
+
+FONT:
+
+<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css'>
+
+font-family: 'Shadows Into Light Two', cursive;
