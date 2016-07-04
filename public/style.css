@@ -1,0 +1,11 @@
+body {
+  padding-top:70px;
+}
+
+#login {
+  border:1px solid black;
+  border-radius: 15px;
+  background-color: black;
+  color:white;
+  margin-top: 15%;
+}
