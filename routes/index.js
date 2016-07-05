@@ -16,9 +16,15 @@ router.get('/new', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
+  console.log(req.body);
   knex('users').where({email: req.body.email}).then(function(data){
-    bcrypt.compare(req.body.password, data[0].password, function(err, result){
-      if(err) next(err);
+    console.log(Number(req.body.password));
+    console.log(data[0].password);
+    bcrypt.compare(Number(req.body.password), data[0].password, function(err, result){
+      if(err){
+        console.log("help");
+      }
+      //next(err);
       else{
         if(result){
           req.session.id = data[0].id;
