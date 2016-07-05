@@ -8,6 +8,9 @@ var bcrypt = require('bcrypt');
 
 //renders household template
 router.get('/:id', function(req, res) {
+  knex('users').where({household_id: req.params.id}).then(function(data) {
+    console.log(data);
+  });
   res.render('household');
 });
 
