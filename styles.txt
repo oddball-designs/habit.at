@@ -23,9 +23,42 @@ javascript/jquery
 
 API endpoints
 
-/ >> renders index (has login and dashboard) (post from here makes new household OR new user)
+/ >> renders index
+
+index.handlebars >> has login and dashboard
+partials >> header / footer / login / dashboard
+
+/new
+
+new_account.handlebars
+
+/ post (creates household or adds user to household)
+
 GATED UNLESS YOU ARE LOGGED IN
+
+
 /households/id (get/put/delete)
-/households/id/task (get/post/put/delete)//see all the tasks for a household/make new task/edit task/delete task
-/users/id (get/put/delete) // account information, avatar if we make it
-/users/id/tasks // (get/put) tasks for specific user
+
+household.handlebars  // shows household members
+
+/households/id/tasks (get/post/put/delete)//see all the tasks for a household/make new task/edit task/delete task
+
+household_tasks.handlebars // shows household tasks
+
+/households/id/tasks/new (get)
+
+new_task.handlebars
+
+/households/id/tasks/id/edit (get, prepopulated)
+
+task.handlebars
+
+/households/id/users/id/ // account information, avatar if we make it
+
+user.handlebars
+
+/households/id/users/id/tasks (get)
+
+user_task.handlebars // tasks, households you belong to
+
+/households/id/users/id/tasks/id // (put) tasks for specific user // put is for toggling
