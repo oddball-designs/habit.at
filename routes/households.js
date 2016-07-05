@@ -15,7 +15,8 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/:houshold_id/users/:user_id', function(req, res) {
-  res.render('user');
+  console.log(req.params.user_id);
+  res.render('user',{user:{first_name:req.session.first_name, last_name: req.session.last_name}});
 });
 
 
