@@ -10,3 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+router.get('/new', function(req, res, next){
+  res.render('new_account');
+})

@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Habit.at</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
-  <link href="style.css" rel="stylesheet">
-</head>
-<body>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="/"><em>Habit@</em></a>
-    </div>
-  </nav>
+<% include partials/header %>
 
   <div class="container">
     <div class="col-md-6 col-md-offset-3" id="login">
@@ -23,7 +10,7 @@
           <input type="email" class="form-control" name="email">
         </div>
         <div class="form-group">
-          <label for="email">Password:</label>
+          <label for="password">Password:</label>
           <input type="password" class="form-control" name="password">
         </div>
         <div class="form-group" style="padding:5% 0">
@@ -34,6 +21,4 @@
     </div>
   </div>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-</html>
+<% include partials/footer %>
