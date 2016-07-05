@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 var index = require('./routes/index');
+var tasks = require('./routes/tasks');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/tasks', tasks);
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
