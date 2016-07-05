@@ -40,4 +40,11 @@ router.post('/', function(req, res, next){
   });
 });
 
+
+router.get('/logout', function(req, res, next){
+  req.sessionOptions.maxAge = 0;
+  req.session = null;
+  res.redirect('/');
+});
+
 module.exports = router;
