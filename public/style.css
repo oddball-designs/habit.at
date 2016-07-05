@@ -3,6 +3,10 @@ body {
   padding-bottom: 70px;
 }
 
+#content {
+  margin-top: 8%;
+}
+
 #login {
   border:1px solid black;
   border-radius: 15px;

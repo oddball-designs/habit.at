@@ -6,6 +6,11 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 
 
+//renders household template
+router.get('/:id', function(req, res) {
+  res.render('household');
+});
+
 // route for adding households
 router.post('/', function(req, res, next){
   bcrypt.hash(req.body.household_password, Number(process.env.SALT) || 5, function(err, hash){
