@@ -14,3 +14,11 @@ body {
   color:white;
   margin-top: 15%;
 }
+
+#select {
+  padding: 8px;
+  background: transparent;
+  border: 1px solid gray;
+  height: 40px;
+  font-size: 1.4em;
+}

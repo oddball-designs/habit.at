@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-module.exports = router;
 
 router.get('/new', function(req, res, next){
   res.render('new_account');
@@ -39,3 +38,5 @@ router.post('/', function(req, res, next){
     });
   });
 });
+
+module.exports = router;
