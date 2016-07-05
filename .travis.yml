@@ -2,9 +2,18 @@ language: node_js
 
 env:
   - NODE_ENV=test
+  - TRAVIS=travis CXX=g++-4.8
 
 node_js:
   - "5.3.0"
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
 
 services:
   - postgresql
@@ -30,14 +39,3 @@ deploy:
   app: habit-at
   run:
     - "npm run knex migrate:latest"
-
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - gcc-5.3
-    - g++-5.3
-
-env:
-  - TRAVIS=travis CXX=g++-5.3
