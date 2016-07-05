@@ -30,3 +30,14 @@ deploy:
   app: habit-at
   run:
     - "npm run knex migrate:latest"
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-5.3
+    - g++-5.3
+
+env:
+  - TRAVIS=travis CXX=g++-5.3
