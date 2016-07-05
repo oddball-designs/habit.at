@@ -36,6 +36,7 @@ router.post('/', function(req, res, next){
                 phone_number: req.body.phone_number,
                 email: req.body.user_email,
                 password: hash,
+                is_admin: false,
                 household_id: data[0].id
               };
               return knex('users').returning('household_id').insert(userObj).then(function(id){
@@ -69,6 +70,7 @@ router.post('/', function(req, res, next){
               phone_number: req.body.phone_number,
               email: req.body.user_email,
               password: hash,
+              is_admin: true,
               household_id: data[0]
             };
             return knex('users').returning('household_id').insert(userObj).then(function(id){
