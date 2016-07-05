@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 var index = require('./routes/index');
+var new_user = require('./routes/new');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/new', new_user);
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
