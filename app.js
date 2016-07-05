@@ -10,6 +10,8 @@ var methodOverride = require('method-override');
 
 var index = require('./routes/index');
 var new_user = require('./routes/new');
+var households = require('./routes/households');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -32,6 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/new', new_user);
+app.use('/households', households);
+app.use('/users', users);
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
