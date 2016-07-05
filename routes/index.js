@@ -16,7 +16,7 @@ router.get('/new', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-  knex('users').where({user_email: req.body.email}).then(function(data){
+  knex('users').where({email: req.body.email}).then(function(data){
     bcrypt.compare(req.body.password, data[0].password, function(err, result){
       if(err) next(err);
       else{
