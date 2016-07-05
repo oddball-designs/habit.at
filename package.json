@@ -4,7 +4,8 @@
   "description": "Q2_project",
   "main": "knexfile.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "./bin/www",
+    "develop": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
