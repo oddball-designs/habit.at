@@ -1,22 +1,41 @@
 <% include partials/header %>
 
+
 <div class="container">
-  <h3>Create your household</h3>
-  <form METHOD="POST" action="/households">
-    <div class="form-group">
-      <label for="household">Household name</label>
-      <input type="household" class="form-control" name="household_name">
-      <label for="email">Household email:</label>
-      <input type="email" class="form-control" name="household_email">
+  <div class="row">
+    <div class="col-md-6">
+      <select name="user_option" class="col-md-6">
+      <option>
+        Join A Household
+      </option>
+      <option>
+        Create New Household
+      </option>
+    </select>
     </div>
-    <div class="form-group">
-      <label for="password">Household password:</label>
-      <input type="password" class="form-control" name="household_password">
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Create your household</h3>
+      <form METHOD="POST" action="/households">
+        <div class="form-group">
+          <label for="household">Household name</label>
+          <input type="household" class="form-control" name="household_name">
+          <label for="email">Household email:</label>
+          <input type="email" class="form-control" name="household_email">
+        </div>
+        <div class="form-group">
+          <label for="password">Household password:</label>
+          <input type="password" class="form-control" name="household_password">
+        </div>
+        <div class="form-group" style="padding:5% 0">
+          <button class="btn btn-info" type="submit">Submit</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group" style="padding:5% 0">
-      <button class="btn btn-info" type="submit">Submit</button>
+
     </div>
-  </form>
 
 
     <div class="row">
