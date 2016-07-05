@@ -5,7 +5,6 @@
   "main": "knexfile.js",
   "scripts": {
     "start": "./bin/www",
-    "develop": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
