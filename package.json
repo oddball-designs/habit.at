@@ -4,8 +4,9 @@
   "description": "Q2_project",
   "main": "knexfile.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "knex": "knex"
   },
   "repository": {
     "type": "git",
