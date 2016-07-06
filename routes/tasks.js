@@ -5,8 +5,17 @@ var router = express.Router();
 var knex = require('../db/knex');
 
 router.get('/', function(req, res){
-  res.send('you are at household tasks');
-})
+  var id = Number(req.customParams.id);
+  knex('households').innerJoin('users', 'users.household_id', 'households.id')
+  .innerJoin('tasks', 'tasks.user_id', 'users.id').where('households.id', id)
+  .then(function(data){
+    console.log(data);
+    res.render('household_tasks', {households: data});
+  });
+
+});
+
+
 
 router.get('/new', function(req, res) {
   console.log(req.customParams);
