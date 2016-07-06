@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
+var tasks = require('./tasks');
 
 // route for adding users
 
@@ -28,9 +29,34 @@ router.get('/:user_id', function(req, res) {
 });
 
 
+
 router.get('/tasks/:id', function(req, res){
   res.render('edit', {tasks:{description: req.session.description}});
 });
+
+
+  // router.put('/tasks/:id', function(req,res){
+  //   // this is the houshold id
+  //   var id = Number(req.householdId);
+  //   // this is the user id
+  //   var userId = Number(req.userId);
+  //   // this is the tasks id
+  //   var taskId = req.params;
+  //
+  //
+  // });
+
+
+  // router.delete('/tasks/:id', function(req, res, next){
+  //     knex('tasks')
+  //     .where({id:req.params.id})
+  //     .delete()
+  //     .then(function(data){
+  //         res.redirect('/user/'+req.params.user_name);
+  //     })
+  //     .catch(next);
+  //
+  //   });
 
 
 // households/id/users/id/tasks/id

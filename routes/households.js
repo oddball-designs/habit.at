@@ -31,6 +31,15 @@ router.use('/:id/users/:user_id', function(req, res, next){
 
 router.use('/:id/users/:user_id', users);
 
+router.use('/:id/users/:user_id/tasks/:task_id', function(req, res, next){
+  req.householdId = req.params.id;
+  req.userId = req.params.user_id;
+  req.taskId = req.params.task_id;
+  next();
+});
+
+router.use('/:id/users/:user_id/tasks/:task_id', tasks);
+
 router.use('/:id/tasks', function(req, res, next){
   req.customParams = req.params;
   next();
