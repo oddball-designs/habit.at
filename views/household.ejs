@@ -4,7 +4,7 @@
   <title>Habit.at</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
-  <link href="../style.css" rel="stylesheet">
+  <link href="/../style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -13,8 +13,7 @@
   <div id="content" class="container">
 
     <div class="row">
-      <h1>Household Name</h1>
-      <button><a href="/logout">logout</a></button>
+      <h1><%=members[0].name%></h1>
       <hr>
     </div>
 
@@ -31,7 +30,7 @@
           <h3><%=admin.first_name%> <%=admin.last_name%></h3>
         </div>
         <div class="col-md-2 col-md-offset-1">
-          <form method="GET" action="/households/<%=admin.household_id%>/users/<%=admin.id%>/tasks">
+          <form method="GET" action="/households/<%=admin.household_id%>/users/<%=admin.id%>">
             <button class="btn btn-block btn-info" style="margin-top:6%">View Tasks</button>
           </form>
         </div>
@@ -57,7 +56,7 @@
           <h3><%=member.first_name%> <%=member.last_name%></h3>
         </div>
         <div class="col-md-2 col-md-offset-1">
-          <form method="GET" action="/households/<%=member.household_id%>/users/<%=member.id%>/tasks">
+          <form method="GET" action="/households/<%=member.household_id%>/users/<%=member.id%>">
             <button class="btn btn-block btn-info" style="margin-top:6%">View Tasks</button>
           </form>
         </div>
