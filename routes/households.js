@@ -41,24 +41,14 @@ router.get('/:id', function(req, res) {
   .where({household_id: req.params.id}).orderBy('first_name','asc').then(function(data) {
     for (var i = 0; i < data.length; i++) {
       if (data[i].is_admin === true) {
-        admins[i] = data[i];
+        admins.push(data[i]);
       } else {
-        members[i] = data[i];
+        members.push(data[i]);
       }
     }
     res.render('household', {admins:admins, members:members});
   });
 });
-
-router.get('/:houshold_id/users/:user_id', function(req, res) {
-  knex('tasks').where('user_id',req.params.user_id).then(function(data) {
-    res.render('user',{
-      user:{first_name:req.session.first_name,last_name: req.session.last_name},
-      tasks: data
-    });
-  });
-});
-
 
 // route for adding households and users
 

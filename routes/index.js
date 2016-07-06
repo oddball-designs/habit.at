@@ -6,12 +6,12 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 
 router.get('/', function(req, res, next) {
-  if (req.session) {
+  if (req.session.id === undefined) {
+    res.render('index');
+  } else {
     res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
   }
-  res.render('index');
 });
-
 
 router.get('/new', function(req, res, next){
   res.render('new_account');
@@ -43,7 +43,6 @@ router.post('/', function(req, res, next){
     });
   });
 });
-
 
 router.get('/logout', function(req, res, next){
   req.sessionOptions.maxAge = 0;
