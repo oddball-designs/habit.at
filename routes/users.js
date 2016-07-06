@@ -6,10 +6,19 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 
   // route for adding users
-  router.get('/', function(req, res){
-    console.log(req.customParams);
-    res.send('hello world');
+
+router.get('/:user_id', function(req, res) {
+  console.log(req.session);
+  knex('tasks').where('user_id', req.params.user_id).then(function(data) {
+    res.render('user',{
+      user:{first_name:req.session.first_name,
+            last_name: req.session.last_name,
+            id: req.session.id,
+            household_id: req.session.household_id},
+      tasks: data
+    });
   });
+});
 
 router.get('/tasks/:id', function(req, res){
   var id = Number(req.customParams.id);
