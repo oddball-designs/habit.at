@@ -8,11 +8,14 @@
 </head>
 <body>
 
+
   <% include partials/header %>
 
   <div class="container">
-    <div class="row" class="household">
+    <div class="row household">
       <div class="col-md-12">
+        <%console.log(households)%>
+        <%console.log(users)%>
         <h2 id="household_name"><%= households[0].name %></h2>
       </div>
       <div class="row">
