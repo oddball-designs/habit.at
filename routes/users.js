@@ -12,7 +12,10 @@ router.get('/:user_id', function(req, res) {
   .where('user_id', req.params.user_id)
   .orderBy('tasks.id','asc')
   .then(function(data) {
-    return knex.select('first_name').from('users').where('id',req.params.user_id).then(function(firstName) {
+    return knex.select('first_name')
+    .from('users')
+    .where('id',req.params.user_id)
+    .then(function(firstName) {
       res.render('user',{
         user:{id: req.session.id,
               household_id: req.session.household_id,
