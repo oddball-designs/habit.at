@@ -6,6 +6,9 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 
 router.get('/', function(req, res, next) {
+  if (req.session) {
+    res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+  }
   res.render('index');
 });
 
@@ -30,6 +33,7 @@ router.post('/', function(req, res, next){
           req.session.id = data[0].id;
           req.session.first_name = data[0].first_name;
           req.session.isAdmin = data[0].is_admin;
+          req.session.household_id = data[0].household_id;
           res.redirect('/households/' + data[0].household_id + '/users/' + data[0].id);
         }
         else{
