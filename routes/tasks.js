@@ -11,7 +11,6 @@ router.get('/', function(req, res){
   .leftJoin('tasks', 'tasks.user_id', 'users.id')
   .where('households.id', id)
   .then(function(data){
-    console.log(data);
     var users = {};
     for (var i = 0; i < data.length; i++){
       if (users[data[i].user_id]){
@@ -29,7 +28,6 @@ router.get('/', function(req, res){
         });
       }
     }
-    console.log(users);
     res.render('household_tasks', {users: users, households:data} );
   });
 

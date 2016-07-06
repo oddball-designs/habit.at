@@ -7,6 +7,13 @@ var bcrypt = require('bcrypt');
 var users = require('./users');
 var tasks = require('./tasks');
 
+router.use('/', function(req, res, next) {
+  if(req.session.id !== undefined) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+});
 
 router.use('/:id/users', function(req, res, next){
   req.customParams = req.params;
