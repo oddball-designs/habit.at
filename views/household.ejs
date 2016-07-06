@@ -18,18 +18,20 @@
     </div>
 
     <div class="row">
-      <div class="col-md-2 col-md-offset-1">
+      <div class="col-md-2">
         <h2>Owner</h2>
       </div>
     </div>
 
+    <hr>
+
     <% admins.forEach(function(admin) { %>
 
       <div class="row">
-        <div class="col-md-3 col-md-offset-2">
+        <div class="col-md-4">
           <h3><%=admin.first_name%> <%=admin.last_name%></h3>
         </div>
-        <div class="col-md-2 col-md-offset-1">
+        <div class="col-md-2">
           <form method="GET" action="/households/<%=admin.household_id%>/users/<%=admin.id%>">
             <button class="btn btn-block btn-info" style="margin-top:6%">View Tasks</button>
           </form>
@@ -44,18 +46,20 @@
     <% }); %>
 
     <div class="row">
-      <div class="col-md-2 col-md-offset-1">
+      <div class="col-md-2">
         <h2>Members</h2>
       </div>
     </div>
 
+    <hr>
+
     <% members.forEach(function(member) { %>
 
       <div class="row">
-        <div class="col-md-3 col-md-offset-2">
+        <div class="col-md-4">
           <h3><%=member.first_name%> <%=member.last_name%></h3>
         </div>
-        <div class="col-md-2 col-md-offset-1">
+        <div class="col-md-2">
           <form method="GET" action="/households/<%=member.household_id%>/users/<%=member.id%>">
             <button class="btn btn-block btn-info" style="margin-top:6%">View Tasks</button>
           </form>
@@ -64,6 +68,9 @@
           <form method="GET" action="/households/<%=member.household_id%>/tasks/new">
             <button class="btn btn-block btn-success" style="margin-top:6%">Add Tasks</button>
           </form>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-block btn-primary" style="margin-top:6%">Make Admin</button>
         </div>
         <div class="col-md-2">
           <button class="btn btn-block btn-danger" style="margin-top:6%">Remove Member</button>

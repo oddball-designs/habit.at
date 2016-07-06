@@ -13,7 +13,7 @@
   <div class="container" style="margin-top:8%">
     <div class="row">
       <div class="col-md-4">
-        <h1><%=user.first_name%></h1>
+        <h1><%=user.first_name%>'s Tasks</h1>
       </div>
     </div>
     <hr>
@@ -27,15 +27,17 @@
         <th></th>
       </tr>
       <% tasks.forEach(function(task) { %>
-        <td><input type="checkbox"></td>
-        <td><%=task.title%></td>
-        <td><%=task.description%></td>
-        <td><%=task.due_date%></td>
-        <td>
-          <form method="GET" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/edit">
-            <button class="btn btn-sm btn-success">Edit</button>
-          </form>
-        </td>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td><%=task.title%></td>
+          <td><%=task.description%></td>
+          <td><%=task.due_date%></td>
+          <td>
+            <form method="GET" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/edit">
+              <button class="btn btn-sm btn-success">Edit</button>
+            </form>
+          </td>
+        </tr>
       <% }); %>
     </table>
 

@@ -8,6 +8,8 @@ var bcrypt = require('bcrypt');
 router.get('/', function(req, res, next) {
   if (req.session.id === undefined) {
     res.render('index');
+  } else if (req.session.is_admin === true) {
+    res.redirect('/households/' + req.session.household_id);
   } else {
     res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
   }

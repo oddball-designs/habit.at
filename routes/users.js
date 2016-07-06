@@ -8,14 +8,17 @@ var bcrypt = require('bcrypt');
   // route for adding users
 
 router.get('/:user_id', function(req, res) {
-  console.log(req.session);
-  knex('tasks').where('user_id', req.params.user_id).then(function(data) {
-    res.render('user',{
-      user:{first_name:req.session.first_name,
-            last_name: req.session.last_name,
-            id: req.session.id,
-            household_id: req.session.household_id},
-      tasks: data
+  knex('tasks')
+  .where('user_id', req.params.user_id)
+  .orderBy('tasks.id','asc')
+  .then(function(data) {
+    return knex.select('first_name').from('users').where('id',req.params.user_id).then(function(firstName) {
+      res.render('user',{
+        user:{id: req.session.id,
+              household_id: req.session.household_id,
+              first_name: firstName[0].first_name},
+        tasks:data
+      });
     });
   });
 });
