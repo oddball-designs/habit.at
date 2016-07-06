@@ -4,7 +4,24 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
+var users = require('./users');
+var tasks = require('./tasks');
 
+
+router.use('/:id/users', function(req, res, next){
+  req.customParams = req.params;
+  next();
+});
+
+router.use('/:id/users', users);
+
+
+router.use('/:id/tasks', function(req, res, next){
+  req.customParams = req.params;
+  next();
+});
+
+router.use('/:id/tasks', tasks);
 
 //renders household template
 router.get('/:id', function(req, res) {
