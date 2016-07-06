@@ -28,7 +28,7 @@ router.get('/tasks/:id', function(req, res){
   // knex.select('users.first_name').from('users').innerJoin('households', 'users.household_id', 'households.id').where('households.id', id)
   // .then(function(data){
   //   console.log(data);
-  console.log(req.session.description);
+  console.log(data[i].description);
   res.render('edit', {tasks:{description: req.session.description}});
 });
 //});
