@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "knex": "knex"
+    "knex": "knex",
+    "dev": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
+    "checkit": "^0.7.0",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-alpha.1",
     "debug": "^2.2.0",
