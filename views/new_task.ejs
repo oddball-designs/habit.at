@@ -29,7 +29,7 @@
               <label for="user">Assigned to:</label>
               <select name="user" class="tasks" id="select_person">
                 <% users.forEach (function(person) {%>
-                <option>
+                <option value="<%=person.id%>">
                   <%= person.first_name %>
                 </option>
                 <%  }) %>

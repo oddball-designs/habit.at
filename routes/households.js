@@ -35,7 +35,10 @@ router.use('/:id/tasks', tasks);
 router.get('/:id', function(req, res) {
   var admins = [];
   var members = [];
-  knex('users').where({household_id: req.params.id}).orderBy('first_name','asc').then(function(data) {
+  knex.select('users.id', 'users.first_name', 'users.last_name', 'users.household_id', 'users.is_admin', 'households.name')
+  .from('users')
+  .leftJoin('households','users.household_id','households.id')
+  .where({household_id: req.params.id}).orderBy('first_name','asc').then(function(data) {
     for (var i = 0; i < data.length; i++) {
       if (data[i].is_admin === true) {
         admins[i] = data[i];
@@ -48,8 +51,12 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/:houshold_id/users/:user_id', function(req, res) {
-  console.log(req.params.user_id);
-  res.render('user',{user:{first_name:req.session.first_name, last_name: req.session.last_name, is_admin: req.session.is_admin}});
+  knex('tasks').where('user_id',req.params.user_id).then(function(data) {
+    res.render('user',{
+      user:{first_name:req.session.first_name,last_name: req.session.last_name},
+      tasks: data
+    });
+  });
 });
 
 
