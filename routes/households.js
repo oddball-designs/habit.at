@@ -72,7 +72,7 @@ router.post('/', function(req, res, next){
               };
               return knex('users').returning('household_id').insert(userObj).then(function(id){
                 console.log(id[0]);
-                res.redirect('/households/' + id[0]);
+                res.redirect('/');
               });
             });
           }
@@ -105,7 +105,7 @@ router.post('/', function(req, res, next){
               household_id: data[0]
             };
             return knex('users').returning('household_id').insert(userObj).then(function(id){
-              res.redirect('/households/' + id);
+              res.redirect('/');
           });
         });
       });
