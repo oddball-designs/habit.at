@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
     table.timestamp('creation_date');
     table.timestamp('completion_date');
     table.string('due_date');
+    table.time('time_due');
   });
 };
 
