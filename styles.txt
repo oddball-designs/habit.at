@@ -39,26 +39,26 @@ GATED UNLESS YOU ARE LOGGED IN
 
 /households/id (get/put/delete)
 
-household.handlebars  // shows household members
+household.ejs  // shows household members
 
 /households/id/tasks (get/post/put/delete)//see all the tasks for a household/make new task/edit task/delete task
 
-household_tasks.handlebars // shows household tasks
+household_tasks.ejs // shows household tasks
 
 /households/id/tasks/new (get)
 
-new_task.handlebars
+new_task.ejs
 
 /households/id/tasks/id/edit (get, prepopulated)
 
-task.handlebars
+task.ejs
 
 /households/id/users/id/ // account information, avatar if we make it
 
-user.handlebars
+user.ejs
 
 /households/id/users/id/tasks (get)
 
-user_task.handlebars // tasks, households you belong to
+user_task.ejs // tasks, households you belong to
 
 /households/id/users/id/tasks/id // (put) tasks for specific user // put is for toggling

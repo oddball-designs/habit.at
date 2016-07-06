@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Habit.at</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
+  <link href="../../../style.css" rel="stylesheet">
+</head>
+<body>
+
+
+  <% include partials/header %>
+
+  <div class="container">
+    <div class="row household">
+      <div class="col-md-12">
+        <%console.log(households)%>
+        <%console.log(users)%>
+        <h2 id="household_name"><%= households[0].name %></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 task_list">
+          <h3>These are the tasks for your household</h3>
+        </div>
+      </div>
+      <div class="col-md-6 task_list" >
+        <% for (var key in users) { %>
+          <h4 class="user_task"><%= users[key].name %></h4>
+
+        <table class="table task_table">
+          <tr>
+            <th>
+              Task
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Due Date
+            </th>
+          </tr>
+            <% users[key].tasks.forEach(function(task){ %>
+        <tr>
+            <td>
+            <p>
+              <%= task.title %>
+            </p>
+            </td>
+            <td>
+            <p>
+              <%= task.description %>
+            </p>
+            </td>
+            <td>
+            <p>
+              <%= task.due_date %>
+            </p>
+            </td>
+        </tr>
+          <% }) %>
+
+        </table>
+    <% } %>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <% include partials/footer %>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
+</html>

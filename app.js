@@ -13,8 +13,7 @@ var methodOverride = require('method-override');
 var index = require('./routes/index');
 var new_user = require('./routes/new');
 var households = require('./routes/households');
-var users = require('./routes/users');
-var tasks = require('./routes/tasks');
+
 
 var app = express();
 
@@ -36,13 +35,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-<<<<<<< HEAD
 app.use('/new', new_user);
 app.use('/households', households);
-app.use('/users', users);
-=======
-app.use('/tasks', tasks);
->>>>>>> compare_feature
+
+
+
 
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {

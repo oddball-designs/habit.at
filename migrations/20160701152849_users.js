@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('password');
     table.string('email');
     table.string('phone_number');
-    table.boolean('is_Admin');
+    table.boolean('is_admin');
     table.integer('household_id');
   });
 };
