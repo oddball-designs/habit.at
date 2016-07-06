@@ -13,8 +13,10 @@
 
 <h1> <%= user.first_name %> </h1>
 <button class="edit">Edit User Information</button>
-<button class="edit" id="tasks">Edit Tasks</button>
-
+<h1> <%= user.is_admin %> </h1>
+<% if(user.is_admin === true){ %>
+  <button class="edit" id="tasks">Edit Tasks</button>
+  <% } %>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

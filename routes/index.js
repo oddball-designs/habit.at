@@ -29,7 +29,7 @@ router.post('/', function(req, res, next){
         if(result){
           req.session.id = data[0].id;
           req.session.first_name = data[0].first_name;
-          req.session.isAdmin = data[0].is_admin;
+          req.session.is_admin = data[0].is_admin;
           res.redirect('/households/' + data[0].household_id + '/users/' + data[0].id);
         }
         else{
