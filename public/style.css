@@ -3,6 +3,10 @@ body {
   padding-bottom: 70px;
 }
 
+.navbar {
+  background-color:rgba(134, 134, 134, 0.5);
+  border: none;
+}
 #content {
   margin-top: 8%;
 }
