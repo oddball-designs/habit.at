@@ -6,11 +6,31 @@ var knex = require('../db/knex');
 
 router.get('/', function(req, res){
   var id = Number(req.customParams.id);
-  knex('households').innerJoin('users', 'users.household_id', 'households.id')
-  .innerJoin('tasks', 'tasks.user_id', 'users.id').where('households.id', id)
+  knex('households')
+  .innerJoin('users', 'users.household_id', 'households.id')
+  .innerJoin('tasks', 'tasks.user_id', 'users.id')
+  .where('households.id', id)
   .then(function(data){
     console.log(data);
-    res.render('household_tasks', {households: data});
+    var users = {};
+    for (var i = 0; i < data.length; i++){
+      if (users[data[i].user_id]){
+        users[data[i].user_id].tasks.push({title: data[i].title, description: data[i].description, due_date: data[i].due_date});
+      }
+      else {
+        users[data[i].user_id] = {
+          name: data[i].first_name,
+          tasks: []
+        };
+        users[data[i].user_id].tasks.push({
+          title: data[i].title,
+          description: data[i].description,
+          due_date: data[i].due_date
+        });
+      }
+    }
+    console.log(users);
+    res.render('household_tasks', {users: users, households:data} );
   });
 
 });

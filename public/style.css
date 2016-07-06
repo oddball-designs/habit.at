@@ -45,3 +45,30 @@ body {
 .household {
   padding-top: 8%;
 }
+
+#household_name {
+  color: #9954bb;
+  font-weight: 500;
+  border: solid 1px #9954bb;
+  padding: 15px;
+  border-radius: 15px;
+
+}
+
+.task_list{
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
+.user_task{
+  color: #9954bb;
+  font-weight: 500;
+}
+
+.task_table th {
+  width: 30%;
+}
+
+.task_table td {
+  width: 30%;
+}
