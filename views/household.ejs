@@ -13,7 +13,11 @@
   <div id="content" class="container">
 
     <div class="row">
-      <h1><%=members[0].name%></h1>
+      <% if (members[0].name !== undefined) { %>
+      <h1><%=members[0].name %></h1>
+      <% } else { %>
+        <h1><%=admins[0].name %></h1>
+      <% } %>
       <hr>
     </div>
 

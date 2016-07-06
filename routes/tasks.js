@@ -60,7 +60,8 @@ router.post('/new', function(req, res){
       is_complete: false,
       creation_date: 'now',
       completion_date: null,
-      due_date: req.body.date_due
+      due_date: req.body.date_due,
+      time_due: req.body.time_due
     };
     return knex('tasks').insert(taskObj).then(function(d){
       res.redirect('/households/' + data[0].household_id + '/tasks');

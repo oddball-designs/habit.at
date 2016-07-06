@@ -40,7 +40,9 @@
         </tr>
       <% }); %>
     </table>
-
+    <p>
+      <% console.log(user)%>
+    </p>
     <form method="GET" action="/households/<%=user.household_id%>/tasks">
       <button class="btn btn-primary btn-block">View Household Tasks</button>
     </form>
