@@ -8,10 +8,18 @@ var bcrypt = require('bcrypt');
 
 //renders household template
 router.get('/:id', function(req, res) {
-  knex('users').where({household_id: req.params.id}).then(function(data) {
-    console.log(data);
+  var admins = [];
+  var members = [];
+  knex('users').where({household_id: req.params.id}).orderBy('first_name','asc').then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].is_admin === true) {
+        admins[i] = data[i];
+      } else {
+        members[i] = data[i];
+      }
+    }
+    res.render('household', {admins:admins, members:members});
   });
-  res.render('household');
 });
 
 router.get('/:houshold_id/users/:user_id', function(req, res) {
