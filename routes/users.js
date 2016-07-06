@@ -12,14 +12,14 @@ var bcrypt = require('bcrypt');
   });
 
 router.get('/tasks/:id', function(req, res){
-  var id = Number(req.customParams.id);
-  knex.select('users.first_name').from('users').innerJoin('households', 'users.household_id', 'households.id').where('households.id', id)
-  .then(function(data){
-    console.log(data);
-
+  // var id = Number(req.customParams.id);
+  // knex.select('users.first_name').from('users').innerJoin('households', 'users.household_id', 'households.id').where('households.id', id)
+  // .then(function(data){
+  //   console.log(data);
+  console.log(req.session.description);
   res.render('edit', {tasks:{description: req.session.description}});
 });
-});
+//});
 
   // households/id/users/id/tasks/id
 
