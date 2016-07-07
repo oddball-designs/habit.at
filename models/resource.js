@@ -52,6 +52,8 @@ var newHouseRules = new Checkit({
     }
   });
 
+
+
 var checkSignup = function(data){
   return rules.run(data);
 };
@@ -59,6 +61,7 @@ var checkSignup = function(data){
 var checkNewHouse = function(data){
   return newHouseRules.run(data);
 };
+
 
 module.exports = {
   checkSignup: checkSignup,

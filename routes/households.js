@@ -70,6 +70,11 @@ router.get('/:id', function(req, res) {
 // route for adding households and users
 
 router.post('/', function(req, res, next){
+  knex('users').where({email: req.body.user_email}).then(function(data){
+    if(data.length > 0){
+      res.render('new_account', {emailTaken: true, error: false});
+    }
+    else {
   resource.checkSignup(req.body).then(function(validated){
       if (req.body.user_option === 'join') {
           knex('households').where({email: req.body.household_email}).then(function(data){
@@ -87,7 +92,6 @@ router.post('/', function(req, res, next){
                     household_id: data[0].id
                   };
                   return knex('users').returning('household_id').insert(userObj).then(function(id){
-                    console.log(id[0]);
                     res.redirect('/');
                   });
                 });
@@ -129,11 +133,11 @@ router.post('/', function(req, res, next){
         });
       }
     }).catch(function(err){
-        console.log(err);
           res.render('new_account', {error:err});
       });
-    });
-
+    }
+  });
+});
 
 
 

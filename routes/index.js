@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next){
-  res.render('new_account', {error: false});
+  res.render('new_account', {error: false, emailTaken: false});
 });
 
 router.post('/', function(req, res, next){

@@ -45,6 +45,11 @@
                 <% } %>
               <label for="email">Email:</label>
               <input type="text" class="form-control" name="user_email">
+                <% if(emailTaken === true) { %>
+                  <p class="error">
+                    Email is already taken, please choose a different one.
+                  </p>
+                <% } %>
               <% if (error) { %>
                 <p class="error">
                   <%= error.errors.user_email.message %>
