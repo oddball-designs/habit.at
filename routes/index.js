@@ -29,7 +29,6 @@ router.post('/', function(req, res, next){
       //next(err);
       else {
         if(result){
-
           req.session.id = data[0].id;
           req.session.first_name = data[0].first_name;
           req.session.is_admin = data[0].is_admin;

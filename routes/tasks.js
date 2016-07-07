@@ -44,14 +44,13 @@ router.get('/new', function(req, res) {
 });
 
 router.get('/edit', function(req, res){
-  var id = Number(req.customParams.id);
-  console.log(req.taskId);
-  knex.select('users.id','users.first_name').from('users').innerJoin('households', 'users.household_id', 'households.id').where('households.id', id)
+  var householdId = Number(req.customParams.id);
+  knex('users')
+  .where('household_id',householdId)
   .then(function(data){
     return knex('tasks').where('id', req.taskId)
     .then(function(task){
-      console.log(data[0]);
-      res.render('edit', {users: data[0], task: task[0]});
+      res.render('edit', {users: data, task: task[0]});
     });
 });
 });
