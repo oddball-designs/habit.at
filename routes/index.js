@@ -16,22 +16,26 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next){
-  res.render('new_account');
+  res.render('new_account', {error: false});
 });
 
 router.post('/', function(req, res, next){
   knex('users').where({email: req.body.email}).then(function(data){
+
     bcrypt.compare(req.body.password, data[0].password, function(err, result){
+
       if(err){
         console.log(err);
       }
       //next(err);
-      else{
+      else {
         if(result){
+
           req.session.id = data[0].id;
           req.session.first_name = data[0].first_name;
           req.session.is_admin = data[0].is_admin;
           req.session.household_id = data[0].household_id;
+
           res.redirect('/households/' + data[0].household_id + '/users/' + data[0].id);
         }
         else{

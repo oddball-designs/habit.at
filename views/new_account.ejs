@@ -23,19 +23,48 @@
             <div class="form-group">
               <label for="first_name">First name:</label>
               <input type="text" class="form-control" name="first_name">
-
+              <% if (error) { %>
+                <p class="error">
+                  <%= error.errors.first_name.message %>
+                </p>
+                <% } %>
               <label for="last_name">Last name:</label>
               <input type="text" class="form-control" name="last_name">
+              <% if (error) { %>
+                <p class="error">
+                  <%= error.errors.last_name.message %>
+                </p>
+                <% } %>
               <label for="username">Username:</label>
               <input type="text" class="form-control" name="username">
+              <% if (error) { %>
+                <p class="error">
+                  <%= error.errors.username.message %>
+                </p>
+                <% } %>
               <label for="email">Email:</label>
               <input type="text" class="form-control" name="user_email">
-              <label for="phone_number">Phone Number:</label>
-              <input type="text" class="form-control" name="phone_number">
+              <% if (error) { %>
+                <p class="error">
+                  <%= error.errors.user_email.message %>
+                </p>
+                <% } %>
+                  <label for="phone_number" id="phone_label">Phone Number:  </label>
+                  <div class="row">
+                    <div class="col-md-12">
+                  <input type="tel" name="tel1" size="3" pattern="\d{3}" title="3-digit area code" class="phone" /> -
+                  <input type="tel" name="tel2" size="3" pattern="\d{3}" title="3-digit exchange" class="phone"/> -
+                  <input type="tel" name="tel3" size="4" pattern="\d{4}" title="4-digit subscriber number" class="phone" />
+                </div>
+              </div>
               <label for="password">Password:</label>
               <input type="password" class="form-control" name="user_password">
+              <% if (error) { %>
+                <p class="error">
+                  <%= error.errors.user_password.message %>
+                </p>
+                <% } %>
             </div>
-
 
         </div>
 

@@ -8,14 +8,13 @@ var users = require('./users');
 var tasks = require('./tasks');
 var resource = require('../models/resource');
 
-router.use('/', function(req, res, next) {
-  if(req.session.id !== undefined) {
-    next();
-  } else {
-    res.redirect('/');
-  }
-});
-
+// router.use('/', function(req, res, next) {
+//   if((req.method === "POST" && req.url === "/") || req.session.id !== undefined) {
+//     next();
+//   } else {
+//     res.redirect('/');
+//   }
+// });
 
 router.use('/:id/users', function(req, res, next){
   req.customParams = req.params;
@@ -71,20 +70,18 @@ router.get('/:id', function(req, res) {
 // route for adding households and users
 
 router.post('/', function(req, res, next){
-  console.log('before');
-  resource.checkUser(req.body).then(function(validated){
+  resource.checkSignup(req.body).then(function(validated){
     console.log(validated);
       if (req.body.user_option === 'join') {
           knex('households').where({email: req.body.household_email}).then(function(data){
             bcrypt.compare(req.body.household_password, data[0].password, function(err, result){
-              console.log(result);
               if (result){
                 bcrypt.hash(req.body.user_password, Number(process.env.SALT) || 5, function(err, hash){
                   var userObj = {
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
                     username: req.body.username,
-                    phone_number: req.body.phone_number,
+                    phone_number: req.body.tel1 + req.body.tel2 + req.body.tel3,
                     email: req.body.user_email,
                     password: hash,
                     is_admin: false,
@@ -125,7 +122,7 @@ router.post('/', function(req, res, next){
                   household_id: data[0]
                 };
                 return knex('users').returning('household_id').insert(userObj).then(function(id){
-                  res.redirect('/');
+                  res.redirect('/' + id);
               });
             });
           });
@@ -134,12 +131,11 @@ router.post('/', function(req, res, next){
       }
     }).catch(function(err){
         console.log(err);
-          res.send(err);
+          res.render('new_account', {error:err});
       });
     });
 
 
-  // adds household first
 
 
 
