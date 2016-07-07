@@ -81,7 +81,7 @@ router.post('/', function(req, res, next){
       res.render('new_account', {emailTaken: true, error: false});
     }
     else {
-  resource.checkSignup(req.body).then(function(validated){
+      resource.checkSignup(req.body).then(function(validated){
       if (req.body.user_option === 'join') {
           knex('households').where({email: req.body.household_email}).then(function(data){
             bcrypt.compare(req.body.household_password, data[0].password, function(err, result){
