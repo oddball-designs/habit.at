@@ -101,6 +101,12 @@ router.post('/', function(req, res, next){
       }
       // if the household does not exist
       else if (req.body.user_option === 'create'){
+
+        knex('households').where({email: req.body.new_household_email}).then(function(data){
+          if(data.length > 0){
+            res.render('new_account', {emailHouseTaken: true, emailTaken: false, error: false});
+          }
+          else {
         bcrypt.hash(req.body.new_household_password, Number(process.env.SALT) || 8, function(err, hash){
           if (err){
             console.log(err);
@@ -132,6 +138,8 @@ router.post('/', function(req, res, next){
           }
         });
       }
+    });
+  }
     }).catch(function(err){
           res.render('new_account', {error:err});
       });

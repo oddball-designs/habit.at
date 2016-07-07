@@ -100,6 +100,11 @@
           <input type="household" class="form-control" name="new_household_name">
           <label for="email">Household email:</label>
           <input type="email" class="form-control" name="new_household_email">
+          <% if(emailHouseTaken === true) { %>
+            <p class="error">
+              Email is already taken, please choose a different one.
+            </p>
+          <% } %>
         </div>
         <div class="form-group">
           <label for="password">Household password:</label>
