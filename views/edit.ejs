@@ -4,7 +4,7 @@
   <title>Habit.at</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
-  <link href="../../../style.css" rel="stylesheet">
+  <link href="/../../../style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -14,36 +14,35 @@
     <div class="row" id="make_task">
       <div class="col-md-6">
         <h3>Add a task</h3>
-        <form METHOD="POST">
+        <form method="POST">
 
           <div class="form-group">
             <div class="tasks">
               <label for="title">Task name:</label>
-              <input type="text" value="hello" class="form-control" name="title">
+              <input type="text" value="<%= task.title %>" class="form-control" name="title">
             </div>
             <div class="tasks">
               <label for="description">Task description</label>
-              <textarea type="text" value="<%= tasks.description %>" rows=5 class="form-control" name="description"></textarea>
+              <textarea type="text" rows="5" class="form-control" name="description"><%= task.description %></textarea>
             </div>
-            <p><%= tasks.description %></p>
             <div class="tasks">
               <label for="user">Assigned to:</label>
               <select name="user" class="tasks" id="select_person">
 
-                <option>
-
-                </option>
-
               </select>
+
             </div>
             <div class="tasks">
               <label>Weekly task?
-                <input type="checkbox" name="is_weekly">
+                <input type="checkbox" <% if(task.is_weekly === true){ %>
+                                        checked="checked"
+                                        <% } %>
+                                        name="is_weekly">
               </label>
             </div>
             <div class="tasks">
               <label for="date">Date Due:</label>
-              <input type="date" value="" class="form-control" name="date_due">
+              <input type="date" value="<%= task.due_date %>" class="form-control" name="date_due">
             </div>
 
           </div>

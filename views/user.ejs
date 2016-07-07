@@ -35,6 +35,8 @@
           <td>
             <form method="GET" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/edit">
               <button class="btn btn-sm btn-success">Edit</button>
+            </form>
+            <form method="DELETE" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/delete">
               <button class="btn btn-sm btn-success">Delete</button>
             </form>
           </td>
