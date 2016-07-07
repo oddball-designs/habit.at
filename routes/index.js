@@ -29,11 +29,12 @@ router.post('/', function(req, res, next){
       //next(err);
       else {
         if(result){
-
+          console.log(data);
           req.session.id = data[0].id;
           req.session.first_name = data[0].first_name;
           req.session.is_admin = data[0].is_admin;
           req.session.household_id = data[0].household_id;
+          console.log(req.session);
           res.redirect('/');
         }
         else{

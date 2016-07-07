@@ -121,7 +121,7 @@ router.post('/', function(req, res, next){
                   household_id: data[0]
                 };
                 return knex('users').returning('household_id').insert(userObj).then(function(id){
-                  res.redirect('/' + id);
+                  res.redirect('/');
               });
             });
           });

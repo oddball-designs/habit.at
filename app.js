@@ -30,7 +30,8 @@ app.use(cookieSession({
   keys: [process.env.KEY1, process.env.KEY2, process.env.KEY3]
 }));
 
-app.use(cookieParser());
+// app.use(cookieParser());
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
