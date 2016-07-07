@@ -29,7 +29,13 @@
             <div class="tasks">
               <label for="user">Assigned to:</label>
               <select name="user" class="tasks" id="select_person">
-
+                <% users.forEach(function(user) { %>
+                  <% if (task.user_id === user.id) { %>
+                  <option selected><%=user.first_name%></option>
+                  <% } else { %>
+                  <option><%=user.first_name%></option>
+                  <% } %>
+                <% }); %>
               </select>
 
             </div>
