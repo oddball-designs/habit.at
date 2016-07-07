@@ -15,7 +15,7 @@
     <div class="row" id="make_task">
       <div class="col-md-6">
         <h3>Add a task</h3>
-        <form method="POST">
+        <form method="POST" action="/households/<%= session.household_id %>/users/<%= users[0].id %>/tasks/<%= task.id %>?_method=PUT">
 
           <div class="form-group">
             <div class="tasks">
@@ -50,6 +50,10 @@
             <div class="tasks">
               <label for="date">Date Due:</label>
               <input type="date" value="<%= task.due_date %>" class="form-control" name="date_due">
+            </div>
+            <div class="tasks">
+              <label for="time_due">Time Due:</label>
+              <input type="time" value="<%= task.time_due %>"class="form-control" name="time_due">
             </div>
 
           </div>
