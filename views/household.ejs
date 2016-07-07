@@ -14,11 +14,20 @@
   <div id="content" class="container">
 
     <div class="row">
-
-      <h1><%=admins[0].name%></h1>
-
-      <hr>
+      <div class="col-md-4">
+        <h1><%=admins[0].name%></h1>
+      </div>
+      <div class="col-md-2 col-md-offset-6">
+        <form method="GET" action="/households/<%=admins[0].household_id%>/tasks/">
+          <button class="btn btn-block btn-warning">View All Tasks</button>
+        </form>
+        <form method="GET" action="/households/<%=admins[0].household_id%>/tasks/new">
+          <button style="margin-top:5%" class="btn btn-block btn-success">Add Tasks</button>
+        </form>
+      </div>
     </div>
+
+    <hr>
 
     <div class="row">
       <div class="col-md-2">
@@ -34,14 +43,9 @@
         <div class="col-md-3 col-md-offset-1">
           <h3><%=admin.first_name%> <%=admin.last_name%></h3>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-md-offset-2">
           <form method="GET" action="/households/<%=admin.household_id%>/users/<%=admin.id%>">
             <button class="btn btn-block btn-info" style="margin-top:6%">View Tasks</button>
-          </form>
-        </div>
-        <div class="col-md-2">
-          <form method="GET" action="/households/<%=admin.household_id%>/tasks/new">
-            <button class="btn btn-block btn-success" style="margin-top:6%">Add Tasks</button>
           </form>
         </div>
       </div>
@@ -63,14 +67,9 @@
           <div class="col-md-3 col-md-offset-1">
             <h3><%=member.first_name%> <%=member.last_name%></h3>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-md-offset-2">
             <form method="GET" action="/households/<%=member.household_id%>/users/<%=member.id%>">
               <button class="btn btn-block btn-info" style="margin-top:6%">View Tasks</button>
-            </form>
-          </div>
-          <div class="col-md-2">
-            <form method="GET" action="/households/<%=member.household_id%>/tasks/new">
-              <button class="btn btn-block btn-success" style="margin-top:6%">Add Tasks</button>
             </form>
           </div>
           <div class="col-md-2">
