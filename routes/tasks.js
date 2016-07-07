@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 var moment = require('moment');
+var request = require('request');
 
 moment().format();
 
@@ -35,7 +36,6 @@ router.get('/', function(req, res){
           time_left: moment().to(moment(data[i].due_date + ' ' + data[i].time_due))
         });
       }
-      console.log(users[14].tasks);
     }
     res.render('household_tasks', {users: users, households:data} );
   });
