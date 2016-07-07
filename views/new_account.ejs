@@ -15,6 +15,13 @@
 
 <div class="container">
 
+<div class="row box">
+  <div class="col-md-12">
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+
 <% if(error === true || emailTaken === true || emailHouseTaken === true) { %>
       <div class="row" id="join_household">
         <div class="col-md-6">
@@ -78,7 +85,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <h2>What Do You Want To Do?</h2>
           <select name="user_option" class="col-md-6" id="select">
           <option value="create">
@@ -93,7 +100,7 @@
 
 
       <div class="row" id="create_household">
-      <div class="col-md-6">
+      <div class="col-md-12">
       <h3>Create your household</h3>
 
         <div class="form-group">
@@ -119,7 +126,7 @@
       </div>
 
       <div class="row" id="old_household">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h3>Join a household</h3>
 
           <div class="form-group">
@@ -142,7 +149,7 @@
 <% } else { %>
 
   <div class="row" id="join_household">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <h3>Enter your user information</h3>
 
       <form METHOD="POST" action="/households">
@@ -205,9 +212,9 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <h2>What Do You Want To Do?</h2>
-      <select name="user_option" class="col-md-6" id="select">
+      <select name="user_option" class="col-md-12" id="select">
       <option value="create">
         Create New Household
       </option>
@@ -220,7 +227,7 @@
 
 
 <div class="row" id="create_household">
-<div class="col-md-6">
+<div class="col-md-12">
   <h3>Create your household</h3>
 
     <div class="form-group">
@@ -246,7 +253,7 @@
 </div>
 
 <div class="row" id="old_household">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h3>Join a household</h3>
 
       <div class="form-group">
@@ -263,9 +270,14 @@
     </form>
   </div>
 
-</div>
-<% } %>
+  </div>
+  <% } %>
 
+    </div>
+    </div>
+  </div>
+
+  </div>
 </div>
 
 <% include partials/footer %>

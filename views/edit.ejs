@@ -12,8 +12,12 @@
 <% include partials/header %>
 
   <div class="container">
+    <div class="row box">
+      <div class="col-md-12">
+
+
     <div class="row" id="make_task">
-      <div class="col-md-6">
+      <div class="col-md-8 col-md-offset-2">
         <h3>Add a task</h3>
         <form method="POST" action="/households/<%= session.household_id %>/users/<%= users[0].id %>/tasks/<%= task.id %>?_method=PUT">
 
@@ -66,6 +70,8 @@
       </div>
 
     </div>
+  </div>
+  </div>
 
   </div>
 
