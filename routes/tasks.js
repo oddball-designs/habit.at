@@ -16,21 +16,23 @@ router.get('/', function(req, res){
   .then(function(data){
     var users = {};
     for (var i = 0; i < data.length; i++){
-      console.log(data);
+
       if (users[data[i].user_id]){
-        users[data[i].user_id].tasks.push({title: data[i].title, description: data[i].description, due_date: data[i].due_date, time_due: data[i].time_due, time_left: moment().to(moment(data[i].due_date + data[i].time_due).add(12, 'h'))});
+        users[data[i].user_id].tasks.push({title: data[i].title, description: data[i].description, due_date: data[i].due_date, time_due: data[i].time_due, time_left: moment().to(moment(data[i].due_date + ' ' + data[i].time_due))});
       }
       else {
         users[data[i].user_id] = {
           name: data[i].first_name,
           tasks: []
         };
+        var due = data[i].due_date + ' ' + data[i].time_due;
+        console.log(due);
         users[data[i].user_id].tasks.push({
           title: data[i].title,
           description: data[i].description,
           due_date: data[i].due_date,
           time_due: data[i].time_due,
-          time_left: moment().to(moment(data[i].due_date + data[i].time_due).add(12, 'h'))
+          time_left: moment().to(moment(data[i].due_date + ' ' + data[i].time_due))
         });
       }
       console.log(users[14].tasks);
