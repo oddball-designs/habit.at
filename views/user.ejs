@@ -41,17 +41,18 @@
           <td><%=task.title%></td>
           <td><%=task.description%></td>
           <td><%=task.due_date%></td>
-          <td>
-            <form method="GET" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/edit">
-
-              <button class="btn btn-sm btn-block btn-success">Edit</button>
-            </form>
-          </td>
-          <td>
-            <form method="POST" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>?_method=DELETE">
-              <button class="btn btn-sm btn-block btn-danger">Delete</button>
-            </form>
-          </td>
+          <% if (user.is_admin) { %>
+            <td>
+              <form method="GET" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/edit">
+                <button class="btn btn-sm btn-block btn-success">Edit</button>
+              </form>
+            </td>
+            <td>
+              <form method="POST" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>?_method=DELETE">
+                <button class="btn btn-sm btn-block btn-danger">Delete</button>
+              </form>
+            </td>
+          <% } %>
         </tr>
       <% }); %>
     </table>

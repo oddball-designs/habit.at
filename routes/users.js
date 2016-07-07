@@ -18,6 +18,7 @@ router.get('/:user_id', function(req, res) {
         res.render('user',{
           user:{id: req.session.id,
                 household_id: req.session.household_id,
+                is_admin: req.session.is_admin,
                 first_name: firstName[0].first_name},
           tasks:data
         });

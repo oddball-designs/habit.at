@@ -50,21 +50,27 @@ router.use('/:id/tasks', tasks);
 
 //renders household template
 router.get('/:id', function(req, res) {
-  var admins = [];
-  var members = [];
-  knex.select('users.id', 'users.first_name', 'users.last_name', 'users.household_id', 'users.is_admin', 'households.name')
-  .from('users')
-  .leftJoin('households','users.household_id','households.id')
-  .where({household_id: req.params.id}).orderBy('first_name','asc').then(function(data) {
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].is_admin === true) {
-        admins.push(data[i]);
-      } else {
-        members.push(data[i]);
+  if (Number(req.session.household_id) === Number(req.params.id) && req.session.is_admin === true) {
+    var admins = [];
+    var members = [];
+    knex.select('users.id', 'users.first_name', 'users.last_name', 'users.household_id', 'users.is_admin', 'households.name')
+    .from('users')
+    .leftJoin('households','users.household_id','households.id')
+    .where({household_id: req.params.id}).orderBy('first_name','asc').then(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].is_admin === true) {
+          admins.push(data[i]);
+        } else {
+          members.push(data[i]);
+        }
       }
-    }
-    res.render('household', {admins:admins, members:members});
-  });
+      res.render('household', {admins:admins, members:members});
+    });
+  } else if (Number(req.session.household_id) === Number(req.params.id) && req.session.is_admin === false) {
+    res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+  } else {
+    res.redirect('/');
+  }
 });
 
 // route for adding households and users
