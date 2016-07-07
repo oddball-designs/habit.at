@@ -13,7 +13,9 @@ var methodOverride = require('method-override');
 var index = require('./routes/index');
 var new_user = require('./routes/new');
 var households = require('./routes/households');
+var schedule = require('./lib/schedule');
 
+schedule();
 
 var app = express();
 
