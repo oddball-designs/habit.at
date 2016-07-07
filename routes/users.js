@@ -28,7 +28,23 @@ router.get('/:user_id', function(req, res) {
   }
 });
 
+router.put('/:user_id', function(req, res) {
+  knex('users')
+  .update('is_admin',true)
+  .where('id',req.params.user_id)
+  .then(function() {
+    res.redirect('/households/' + req.session.household_id);
+  });
+});
 
+router.delete('/:user_id', function(req, res) {
+  knex('users')
+  .del()
+  .where('id',req.params.user_id)
+  .then(function() {
+    res.redirect('/households/' + req.session.household_id);
+  });
+});
 
 router.get('/tasks/:id', function(req, res){
   res.render('edit', {tasks:{description: req.session.description}});

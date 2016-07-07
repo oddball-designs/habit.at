@@ -35,7 +35,7 @@ router.get('/', function(req, res){
 
 
 
-router.get('/id/new', function(req, res) {
+router.get('/new', function(req, res) {
   var id = Number(req.customParams.id);
   knex.select('users.id','users.first_name').from('users').innerJoin('households', 'users.household_id', 'households.id').where('households.id', id)
   .then(function(data){

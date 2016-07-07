@@ -8,13 +8,13 @@ var users = require('./users');
 var tasks = require('./tasks');
 var resource = require('../models/resource');
 
-// router.use('/', function(req, res, next) {
-//   if((req.method === "POST" && req.url === "/") || req.session.id !== undefined) {
-//     next();
-//   } else {
-//     res.redirect('/');
-//   }
-// });
+router.use('/', function(req, res, next) {
+  if((req.method === 'POST' && req.url === '/') || req.session.id !== undefined) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+});
 
 router.use('/:id/users', function(req, res, next){
   req.customParams = req.params;
