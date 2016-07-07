@@ -71,7 +71,6 @@ router.get('/:id', function(req, res) {
 
 router.post('/', function(req, res, next){
   resource.checkSignup(req.body).then(function(validated){
-    console.log(validated);
       if (req.body.user_option === 'join') {
           knex('households').where({email: req.body.household_email}).then(function(data){
             bcrypt.compare(req.body.household_password, data[0].password, function(err, result){
