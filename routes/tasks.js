@@ -50,8 +50,8 @@ router.get('/edit', function(req, res){
   .then(function(data){
     return knex('tasks').where('id', req.taskId)
     .then(function(task){
-      console.log(data[0]);
-      res.render('edit', {users: data[0], task: task[0]});
+      console.log(data);
+      res.render('edit', {users: data, task: task[0], session: req.session});
     });
 });
 });
@@ -79,6 +79,25 @@ router.post('/new', function(req, res){
     });
   });
 
+});
+
+
+router.put('/:id', function(req, res){
+
+  tasks().where('id', req.params.id).update({
+      title: req.body.title,
+      description: req.body.description,
+      user_id: data[0].id,
+      is_weekly: isWeekly,
+      is_complete: false,
+      creation_date: 'now',
+      completion_date: null,
+      due_date: req.body.date_due,
+      time_due: req.body.time_due
+    }).then(function(result){
+      res.json(result);
+    });
+      res.redirect('/households/' + data[0].household_id + '/tasks');
 });
 
 module.exports = router;
