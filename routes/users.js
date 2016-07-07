@@ -62,17 +62,31 @@ router.get('/tasks/:id', function(req, res){
   //
   // });
 
+router.put('/tasks/:id/toggle', function(req, res) {
+  knex('tasks')
+  .where('id',req.params.id)
+  .then(function(task) {
+    if (task[0].is_complete === true) {
+      return knex('tasks').update({is_complete:false,completion_date:null}).where('id',req.params.id).then(function() {
+        res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+      });
+    } else {
+      return knex('tasks').update({is_complete:true,completion_date:'now'}).where('id',req.params.id).then(function() {
+        res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+      });
+    }
+  });
+});
 
-  // router.delete('/tasks/:id', function(req, res, next){
-  //     knex('tasks')
-  //     .where({id:req.params.id})
-  //     .delete()
-  //     .then(function(data){
-  //         res.redirect('/user/'+req.params.user_name);
-  //     })
-  //     .catch(next);
-  //
-  //   });
+
+router.delete('/tasks/:id', function(req, res){
+  knex('tasks')
+  .del()
+  .where('id',req.params.id)
+  .then(function() {
+    res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+  });
+});
 
 
 // households/id/users/id/tasks/id

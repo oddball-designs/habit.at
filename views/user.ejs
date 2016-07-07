@@ -30,11 +30,13 @@
       <% tasks.forEach(function(task) { %>
         <tr>
           <td>
-            <% if (task.is_complete) { %>
-              <button class="btn btn-sm btn-block btn-success">Complete!</button>
-            <% } else { %>
-              <button class="btn btn-sm btn-block btn-danger">Incomplete!</button>
-            <% } %>
+            <form method="POST" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/toggle?_method=PUT">
+              <% if (task.is_complete) { %>
+                <button class="btn btn-sm btn-block btn-success">Complete!</button>
+              <% } else { %>
+                <button class="btn btn-sm btn-block btn-danger">Incomplete!</button>
+              <% } %>
+            </form>
           </td>
           <td><%=task.title%></td>
           <td><%=task.description%></td>
@@ -46,7 +48,7 @@
             </form>
           </td>
           <td>
-            <form method="POST" action="/insert_route_here?_method=DELETE">
+            <form method="POST" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>?_method=DELETE">
               <button class="btn btn-sm btn-block btn-danger">Delete</button>
             </form>
           </td>
