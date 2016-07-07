@@ -31,9 +31,9 @@
               <select name="user" class="tasks" id="select_person">
                 <% users.forEach(function(user) { %>
                   <% if (task.user_id === user.id) { %>
-                  <option selected><%=user.first_name%></option>
+                  <option value="<%= user.id %>"selected><%=user.first_name%></option>
                   <% } else { %>
-                  <option><%=user.first_name%></option>
+                  <option value="<%= user.id %>"><%=user.first_name%></option>
                   <% } %>
                 <% }); %>
               </select>

@@ -51,16 +51,20 @@ router.get('/tasks/:id', function(req, res){
 });
 
 
-  // router.put('/tasks/:id', function(req,res){
-  //   // this is the houshold id
-  //   var id = Number(req.householdId);
-  //   // this is the user id
-  //   var userId = Number(req.userId);
-  //   // this is the tasks id
-  //   var taskId = req.params;
-  //
-  //
-  // });
+
+router.put('/tasks/:id', function(req, res){
+  knex('tasks').where('id', req.params.id).update({
+      title: req.body.title,
+      description: req.body.description,
+      user_id: req.body.user,
+      is_weekly: req.body.is_weekly,
+      due_date: req.body.date_due,
+      time_due: req.body.time_due
+    }).then(function(){
+      res.redirect('/households/' + req.session.household_id + '/tasks');
+    });
+  });
+
 
 router.put('/tasks/:id/toggle', function(req, res) {
   knex('tasks')
@@ -86,18 +90,6 @@ router.delete('/tasks/:id', function(req, res){
   .then(function() {
     res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
   });
-});
-
-
-// households/id/users/id/tasks/id
-
-router.put('/tasks/:id', function(req,res){
-  // this is the houshold id
-  var id = Number(req.householdId)
-  // this is the user id
-  var userId = Number(req.userId);
-  // this is the tasks id
-  var taskId = req.params;
 });
 
 
