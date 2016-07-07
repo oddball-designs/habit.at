@@ -15,16 +15,15 @@
   <div class="container">
     <div class="row household">
       <div class="col-md-12">
-        <%console.log(households)%>
-        <%console.log(users)%>
-        <h2 id="household_name"><%= households[0].name %></h2>
+
+     <h2 id="household_name">    <a href="/households/<%= households[0].household_id %>" class="household_home" ><%= households[0].name %></a></h2>
       </div>
       <div class="row">
-        <div class="col-md-6 task_list">
+        <div class="col-md-8 task_list">
           <h3>These are the tasks for your household</h3>
         </div>
       </div>
-      <div class="col-md-6 task_list" >
+      <div class="col-md-8 task_list" >
         <% for (var key in users) { %>
           <h4 class="user_task"><%= users[key].name %></h4>
 
@@ -38,6 +37,12 @@
             </th>
             <th>
               Due Date
+            </th>
+            <th>
+              Time Due
+            </th>
+            <th>
+              Time Left Til Due
             </th>
           </tr>
             <% users[key].tasks.forEach(function(task){ %>
@@ -55,6 +60,16 @@
             <td>
             <p>
               <%= task.due_date %>
+            </p>
+            </td>
+            <td>
+            <p>
+              <%= task.time_due %>
+            </p>
+            </td>
+            <td>
+            <p>
+              <%= task.time_left %>
             </p>
             </td>
         </tr>

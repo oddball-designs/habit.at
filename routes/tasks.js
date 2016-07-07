@@ -3,6 +3,9 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
+var moment = require('moment');
+
+moment().format();
 
 router.get('/', function(req, res){
   var id = Number(req.customParams.id);
@@ -13,8 +16,9 @@ router.get('/', function(req, res){
   .then(function(data){
     var users = {};
     for (var i = 0; i < data.length; i++){
+      console.log(data);
       if (users[data[i].user_id]){
-        users[data[i].user_id].tasks.push({title: data[i].title, description: data[i].description, due_date: data[i].due_date});
+        users[data[i].user_id].tasks.push({title: data[i].title, description: data[i].description, due_date: data[i].due_date, time_due: data[i].time_due, time_left: moment().to(moment(data[i].due_date + data[i].time_due).add(12, 'h'))});
       }
       else {
         users[data[i].user_id] = {
@@ -24,9 +28,12 @@ router.get('/', function(req, res){
         users[data[i].user_id].tasks.push({
           title: data[i].title,
           description: data[i].description,
-          due_date: data[i].due_date
+          due_date: data[i].due_date,
+          time_due: data[i].time_due,
+          time_left: moment().to(moment(data[i].due_date + data[i].time_due).add(12, 'h'))
         });
       }
+      console.log(users[14].tasks);
     }
     res.render('household_tasks', {users: users, households:data} );
   });

@@ -69,11 +69,13 @@ body {
 }
 
 .task_table th {
-  width: 30%;
+  width: 22%;
 }
 
+
+
 .task_table td {
-  width: 30%;
+  width: 22%;
 }
 
 .form-group label {
@@ -107,4 +109,12 @@ hr {
 
 .table>tbody>tr:hover {
   background-color: #E9F1DF;
+}
+
+.household_home {
+    color: #9954bb;
+}
+.household_home:hover {
+  text-decoration: none;
+  color: #723f8b;
 }
