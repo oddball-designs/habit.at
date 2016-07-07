@@ -70,9 +70,10 @@ router.get('/:id', function(req, res) {
 // route for adding households and users
 
 router.post('/', function(req, res, next){
+
   knex('users').where({email: req.body.user_email}).then(function(data){
     if(data.length > 0){
-      res.render('new_account', {emailTaken: true, error: false});
+      res.render('new_account', {emailTaken: true, emailHouseTaken: false, error: false, values: req.body});
     }
     else {
   resource.checkSignup(req.body).then(function(validated){
@@ -104,7 +105,7 @@ router.post('/', function(req, res, next){
 
         knex('households').where({email: req.body.new_household_email}).then(function(data){
           if(data.length > 0){
-            res.render('new_account', {emailHouseTaken: true, emailTaken: false, error: false});
+            res.render('new_account', {emailHouseTaken: true, emailTaken: false, error: false, values: req.body});
           }
           else {
         bcrypt.hash(req.body.new_household_password, Number(process.env.SALT) || 8, function(err, hash){
@@ -141,7 +142,7 @@ router.post('/', function(req, res, next){
     });
   }
     }).catch(function(err){
-          res.render('new_account', {error:err});
+          res.render('new_account', {error: err, values: req.body});
       });
     }
   });

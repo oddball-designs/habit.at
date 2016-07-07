@@ -15,7 +15,7 @@
 
 <div class="container">
 
-
+<% if(error === true || emailTaken === true || emailHouseTaken === true) { %>
       <div class="row" id="join_household">
         <div class="col-md-6">
           <h3>Enter your user information</h3>
@@ -23,28 +23,29 @@
           <form METHOD="POST" action="/households">
             <div class="form-group">
               <label for="first_name">First name:</label>
-              <input type="text" class="form-control" name="first_name">
+              <input type="text" class="form-control" name="first_name" value="<%= values.first_name %>">
               <% if (error) { %>
                 <p class="error">
                   <%= error.errors.first_name.message %>
                 </p>
                 <% } %>
               <label for="last_name">Last name:</label>
-              <input type="text" class="form-control" name="last_name">
+              <input type="text" class="form-control" name="last_name" value="<%= values.last_name %>">
               <% if (error) { %>
                 <p class="error">
                   <%= error.errors.last_name.message %>
                 </p>
                 <% } %>
               <label for="username">Username:</label>
-              <input type="text" class="form-control" name="username">
+              <input type="text" class="form-control" name="username" value="<%= values.username %>" >
+
               <% if (error) { %>
                 <p class="error">
                   <%= error.errors.username.message %>
                 </p>
                 <% } %>
               <label for="email">Email:</label>
-              <input type="text" class="form-control" name="user_email">
+              <input type="text" class="form-control" name="user_email" value="<%= values.user_email %>">
                 <% if(emailTaken === true) { %>
                   <p class="error">
                     Email is already taken, please choose a different one.
@@ -58,9 +59,9 @@
                   <label for="phone_number" id="phone_label">Phone Number:  </label>
                   <div class="row">
                     <div class="col-md-12">
-                  <input type="tel" name="tel1" size="3" pattern="\d{3}" title="3-digit area code" class="phone" /> -
-                  <input type="tel" name="tel2" size="3" pattern="\d{3}" title="3-digit exchange" class="phone"/> -
-                  <input type="tel" name="tel3" size="4" pattern="\d{4}" title="4-digit subscriber number" class="phone" />
+                  <input type="tel" name="tel1" value="<%= values.tel1 %>" size="3" pattern="\d{3}" title="3-digit area code" class="phone" /> -
+                  <input type="tel" name="tel2" value="<%= values.tel2 %>" size="3" pattern="\d{3}" title="3-digit exchange" class="phone"/> -
+                  <input type="tel" name="tel3" value="<%= values.tel3 %>" size="4" pattern="\d{4}" title="4-digit subscriber number" class="phone" />
                 </div>
               </div>
               <label for="password">Password:</label>
@@ -70,7 +71,7 @@
                   <%= error.errors.user_password.message %>
                 </p>
                 <% } %>
-            </div>
+              </div>
 
         </div>
 
@@ -91,8 +92,8 @@
       </div>
 
 
-  <div class="row" id="create_household">
-    <div class="col-md-6">
+      <div class="row" id="create_household">
+      <div class="col-md-6">
       <h3>Create your household</h3>
 
         <div class="form-group">
@@ -114,10 +115,10 @@
           <button class="btn btn-info" type="submit">Submit</button>
         </div>
 
-    </div>
-  </div>
+      </div>
+      </div>
 
-  <div class="row" id="old_household">
+      <div class="row" id="old_household">
       <div class="col-md-6">
         <h3>Join a household</h3>
 
@@ -135,8 +136,135 @@
         </form>
       </div>
 
+      </div>
+
+
+<% } else { %>
+
+  <div class="row" id="join_household">
+    <div class="col-md-6">
+      <h3>Enter your user information</h3>
+
+      <form METHOD="POST" action="/households">
+        <div class="form-group">
+          <label for="first_name">First name:</label>
+          <input type="text" class="form-control" name="first_name">
+          <% if (error) { %>
+            <p class="error">
+              <%= error.errors.first_name.message %>
+            </p>
+            <% } %>
+          <label for="last_name">Last name:</label>
+          <input type="text" class="form-control" name="last_name">
+          <% if (error) { %>
+            <p class="error">
+              <%= error.errors.last_name.message %>
+            </p>
+            <% } %>
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" name="username" <% if (emailTaken === true || emailHouseTaken === true || error === true) { %>
+          value="<%= values.username %>"
+          <% } %> >
+
+          <% if (error) { %>
+            <p class="error">
+              <%= error.errors.username.message %>
+            </p>
+            <% } %>
+          <label for="email">Email:</label>
+          <input type="text" class="form-control" name="user_email">
+            <% if(emailTaken === true) { %>
+              <p class="error">
+                Email is already taken, please choose a different one.
+              </p>
+            <% } %>
+          <% if (error) { %>
+            <p class="error">
+              <%= error.errors.user_email.message %>
+            </p>
+            <% } %>
+              <label for="phone_number" id="phone_label">Phone Number:  </label>
+              <div class="row">
+                <div class="col-md-12">
+              <input type="tel" name="tel1" size="3" pattern="\d{3}" title="3-digit area code" class="phone" /> -
+              <input type="tel" name="tel2" size="3" pattern="\d{3}" title="3-digit exchange" class="phone"/> -
+              <input type="tel" name="tel3" size="4" pattern="\d{4}" title="4-digit subscriber number" class="phone" />
+            </div>
+          </div>
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" name="user_password">
+          <% if (error) { %>
+            <p class="error">
+              <%= error.errors.user_password.message %>
+            </p>
+            <% } %>
+        </div>
+
+    </div>
+
   </div>
 
+  <div class="row">
+    <div class="col-md-6">
+      <h2>What Do You Want To Do?</h2>
+      <select name="user_option" class="col-md-6" id="select">
+      <option value="create">
+        Create New Household
+      </option>
+      <option value="join">
+        Join A Household
+      </option>
+    </select>
+    </div>
+  </div>
+
+
+<div class="row" id="create_household">
+<div class="col-md-6">
+  <h3>Create your household</h3>
+
+    <div class="form-group">
+      <label for="household">Household name</label>
+      <input type="household" class="form-control" name="new_household_name">
+      <label for="email">Household email:</label>
+      <input type="email" class="form-control" name="new_household_email">
+      <% if(emailHouseTaken === true) { %>
+        <p class="error">
+          Email is already taken, please choose a different one.
+        </p>
+      <% } %>
+    </div>
+    <div class="form-group">
+      <label for="password">Household password:</label>
+      <input type="password" class="form-control" name="new_household_password">
+    </div>
+    <div class="form-group" style="padding:5% 0">
+      <button class="btn btn-info" type="submit">Submit</button>
+    </div>
+
+</div>
+</div>
+
+<div class="row" id="old_household">
+  <div class="col-md-6">
+    <h3>Join a household</h3>
+
+      <div class="form-group">
+        <label for="email">Household email:</label>
+        <input type="email" class="form-control" name="household_email">
+      </div>
+      <div class="form-group">
+        <label for="password">Household password:</label>
+        <input type="password" class="form-control" name="household_password">
+      </div>
+      <div class="form-group" style="padding:5% 0">
+        <button class="btn btn-info" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+<% } %>
 
 </div>
 
