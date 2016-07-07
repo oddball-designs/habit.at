@@ -114,7 +114,7 @@ router.post('/', function(req, res, next){
                   first_name: req.body.first_name,
                   last_name: req.body.last_name,
                   username: req.body.username,
-                  phone_number: req.body.phone_number,
+                  phone_number: req.body.tel1 + req.body.tel2 + req.body.tel3,
                   email: req.body.user_email,
                   password: hash,
                   is_admin: true,
