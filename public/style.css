@@ -50,9 +50,8 @@ body {
 }
 
 #household_name {
-  color: #9954bb;
   font-weight: 500;
-  border: solid 1px #9954bb;
+  border: solid 1px black;
   padding: 15px;
   border-radius: 15px;
 
@@ -64,7 +63,8 @@ body {
 }
 
 .user_task{
-  color: #9954bb;
+  border-bottom: 1px solid;
+  border-bottom-color:black;
   font-weight: 500;
 }
 

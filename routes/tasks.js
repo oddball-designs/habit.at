@@ -17,7 +17,6 @@ router.get('/', function(req, res){
   .then(function(data){
     var users = {};
     for (var i = 0; i < data.length; i++){
-
       if (users[data[i].user_id]){
         users[data[i].user_id].tasks.push({title: data[i].title, description: data[i].description, due_date: data[i].due_date, time_due: data[i].time_due, time_left: moment().to(moment(data[i].due_date + ' ' + data[i].time_due))});
       }
