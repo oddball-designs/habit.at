@@ -1,6 +1,9 @@
 body {
   padding-top:70px;
-  background-color: #36B1BF;
+  background-color: rgba(217, 217, 217, 0.32);
+  background-image: url("./home2.jpeg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .navbar {
@@ -14,7 +17,7 @@ body {
 #login {
   border:1px solid black;
   border-radius: 15px;
-  background-color: #E9F1DF;
+  background-color: rgba(233, 241, 223, 0.47);
   margin-top: 15%;
 }
 
@@ -50,8 +53,9 @@ body {
 }
 
 #household_name {
+  color: #9954bb;
   font-weight: 500;
-  border: solid 1px black;
+  border: solid 1px #9954bb;
   padding: 15px;
   border-radius: 15px;
 
@@ -63,8 +67,7 @@ body {
 }
 
 .user_task{
-  border-bottom: 1px solid;
-  border-bottom-color:black;
+  color: #9954bb;
   font-weight: 500;
 }
 
