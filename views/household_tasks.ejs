@@ -37,12 +37,17 @@
           </tr>
           <% users[key].tasks.forEach(function(task){ %>
             <% if (task.title !== null) { %>
+              <% var timeString = task.time_left %>
               <tr>
                 <td><p><%= task.title %></p></td>
                 <td><p><%= task.description %></p></td>
                 <td><p><%= task.due_date%></p></td>
                 <td><p><%= task.time_due %></p></td>
-                <td><p><%= task.time_left %></p></td>
+                <% if (timeString.substr(-7) === 'minutes') { %>
+                  <td><p style="color:red"><%= task.time_left %></p></td>
+                <% } else { %>
+                  <td><p><%=task.time_left%></p></td>
+                <% } %>
               </tr>
             <% } %>
           <% }) %>

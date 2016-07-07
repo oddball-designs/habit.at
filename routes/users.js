@@ -43,7 +43,9 @@ router.delete('/:user_id', function(req, res) {
   .del()
   .where('id',req.params.user_id)
   .then(function() {
-    res.redirect('/households/' + req.session.household_id);
+    return knex('tasks').del().where('user_id',req.params.user_id).then(function() {
+      res.redirect('/households/' + req.session.household_id);
+    });
   });
 });
 
