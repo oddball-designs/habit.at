@@ -8,7 +8,7 @@ var users = require('./users');
 var tasks = require('./tasks');
 
 router.use('/', function(req, res, next) {
-  if(req.session.id !== undefined) {
+  if((req.method === 'POST' && req.url === '/') || req.session.id !== undefined) {
     next();
   } else {
     res.redirect('/');

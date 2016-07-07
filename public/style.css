@@ -1,10 +1,10 @@
 body {
   padding-top:70px;
-  padding-bottom: 70px;
+  background-color: #36B1BF;
 }
 
 .navbar {
-  background-color:rgba(134, 134, 134, 0.5);
+  background-color:rgba(134, 134, 134);
   border: none;
 }
 #content {
@@ -14,8 +14,7 @@ body {
 #login {
   border:1px solid black;
   border-radius: 15px;
-  background-color: black;
-  color:white;
+  background-color: #E9F1DF;
   margin-top: 15%;
 }
 
@@ -75,4 +74,20 @@ body {
 
 .task_table td {
   width: 30%;
+}
+
+hr {
+  border-top-color: black;
+}
+
+.table>tbody>tr>th {
+  border-top-color: #36B1BF;
+}
+
+.table>tbody>tr>td {
+  border-top-color: #36B1BF;
+}
+
+.table>tbody>tr:hover {
+  background-color: #E9F1DF;
 }

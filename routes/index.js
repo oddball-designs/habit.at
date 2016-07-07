@@ -32,7 +32,7 @@ router.post('/', function(req, res, next){
           req.session.first_name = data[0].first_name;
           req.session.is_admin = data[0].is_admin;
           req.session.household_id = data[0].household_id;
-          res.redirect('/households/' + data[0].household_id + '/users/' + data[0].id);
+          res.redirect('/');
         }
         else{
           res.send("Your email or password was invalid.");

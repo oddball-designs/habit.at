@@ -4,6 +4,7 @@
   <title>Habit.at</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet" type="text/css">
   <link href="/../style.css" rel="stylesheet">
 </head>
 <body>
@@ -21,7 +22,7 @@
 
     <div class="row">
       <div class="col-md-2">
-        <h2>Owner</h2>
+        <h2><strong>Owner(s)</strong></h2>
       </div>
     </div>
 
@@ -30,7 +31,7 @@
     <% admins.forEach(function(admin) { %>
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3 col-md-offset-1">
           <h3><%=admin.first_name%> <%=admin.last_name%></h3>
         </div>
         <div class="col-md-2">
@@ -49,7 +50,7 @@
 
     <div class="row">
       <div class="col-md-2">
-        <h2>Members</h2>
+        <h2><strong>Member(s)</strong></h2>
       </div>
     </div>
 
@@ -59,7 +60,7 @@
       <% members.forEach(function(member) { %>
 
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3 col-md-offset-1">
             <h3><%=member.first_name%> <%=member.last_name%></h3>
           </div>
           <div class="col-md-2">
@@ -73,10 +74,14 @@
             </form>
           </div>
           <div class="col-md-2">
-            <button class="btn btn-block btn-primary" style="margin-top:6%">Make Admin</button>
+            <form method="POST" action="/households/<%=member.household_id%>/users/<%=member.id%>?_method=PUT">
+              <button class="btn btn-block btn-primary" style="margin-top:6%">Make Admin</button>
+            </form>
           </div>
           <div class="col-md-2">
-            <button class="btn btn-block btn-danger" style="margin-top:6%">Remove Member</button>
+            <form method="POST" action="/households/<%=member.household_id%>/users/<%=member.id%>?_method=DELETE">
+              <button class="btn btn-block btn-danger" style="margin-top:6%">Remove Member</button>
+            </form>
           </div>
         </div>
 

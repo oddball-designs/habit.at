@@ -4,6 +4,7 @@
   <title>Habit.at</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-OiWEn8WwtH+084y4yW2YhhH6z/qTSecHZuk/eiWtnvLtU+Z8lpDsmhOKkex6YARr" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet" type="text/css">
   <link href="/../style.css" rel="stylesheet">
 </head>
 <body>
@@ -18,32 +19,40 @@
     </div>
     <hr>
     <table class="table table-hover">
-      <h2>Tasks</h2>
       <tr>
-        <th>Complete</th>
+        <th>Status</th>
         <th>Title</th>
         <th>Description</th>
         <th>Due Date</th>
         <th></th>
+        <th></th>
       </tr>
       <% tasks.forEach(function(task) { %>
         <tr>
-          <td><input type="checkbox"></td>
+          <td>
+            <% if (task.is_complete) { %>
+              <button class="btn btn-sm btn-block btn-success">Complete!</button>
+            <% } else { %>
+              <button class="btn btn-sm btn-block btn-danger">Incomplete!</button>
+            <% } %>
+          </td>
           <td><%=task.title%></td>
           <td><%=task.description%></td>
           <td><%=task.due_date%></td>
           <td>
             <form method="GET" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/edit">
-              <button class="btn btn-sm btn-success">Edit</button>
-              <button class="btn btn-sm btn-success">Delete</button>
+              <button class="btn btn-sm btn-block btn-success">Edit</button>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="/insert_route_here?_method=DELETE">
+              <button class="btn btn-sm btn-block btn-danger">Delete</button>
             </form>
           </td>
         </tr>
       <% }); %>
     </table>
-    <p>
-      <% console.log(user)%>
-    </p>
+
     <form method="GET" action="/households/<%=user.household_id%>/tasks">
       <button class="btn btn-primary btn-block">View Household Tasks</button>
     </form>
