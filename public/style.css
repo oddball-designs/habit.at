@@ -2,8 +2,16 @@ body {
   padding-top:70px;
   background-color: rgb(71, 81, 104);
   background-image: url("./home2.jpg");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+
+#index-background {
+  padding-top:70px;
+  background-color: rgb(71, 81, 104);
+  background-image: url("./home2.jpg");
+  background-size: 100%;
+  margin-bottom: 10%;
 }
 
 .btn {
@@ -57,10 +65,12 @@ body {
 }
 
 #login {
+  display:none;
   border-radius: 15px;
   background-color: rgba(217, 217, 217, 0.75);
-  margin-top: 15%;
+  margin-top: 10%;
   padding: 2% 2% 0 2%;
+  margin-bottom: 30%;
 }
 
 #login h1{
@@ -166,4 +176,45 @@ hr {
 .household_home:hover {
   text-decoration: none;
   color: #723f8b;
+}
+
+/*styles for home landing page*/
+
+.cell_container {
+  margin-top: 5%;
+}
+
+.cell {
+  background-color: rgba(217, 217, 217, 0.75);
+  padding: 3%;
+  border-radius: 15px;
+  margin: 3%;
+
+}
+
+.font-awesome {
+  font-size: 4em;
+  text-align: center;
+}
+
+.features {
+  font-size: 1.3em;
+  text-align: center
+}
+
+#intro {
+  text-align: center;
+  font-size: 5em;
+  color: white;
+  font-weight: 900;
+  margin-top: 10%;
+}
+
+#tag {
+  margin-top: 3%;
+  text-shadow: 1px 1px 2px rgb(53, 57, 83);
+  font-size: 2em;
+  text-align: center;
+  color: white;
+  font-weight: 600;
 }
