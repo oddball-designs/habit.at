@@ -79,12 +79,15 @@ router.post('/', function(req, res, next){
 
   knex('users').where({email: req.body.user_email}).then(function(data){
     if(data.length > 0){
-      res.render('new_account', {emailTaken: true, emailHouseTaken: false, error: false, values: req.body});
+      res.render('new_account', {emailTaken: true, invalidEmail: false, emailHouseTaken: false, error: false, values: req.body});
     }
     else {
       resource.checkSignup(req.body).then(function(validated){
       if (req.body.user_option === 'join') {
           knex('households').where({email: req.body.household_email}).then(function(data){
+            if(data.length === 0){
+              res.render('new_account', {invalidEmail: true, emailTaken: false, emailHouseTaken: false, error: false, values: req.body});
+            } else {
             bcrypt.compare(req.body.household_password, data[0].password, function(err, result){
               if (result){
                 bcrypt.hash(req.body.user_password, Number(process.env.SALT) || 5, function(err, hash){
@@ -104,14 +107,15 @@ router.post('/', function(req, res, next){
                 });
               }
             });
-          });
+          }
+        });
       }
       // if the household does not exist
       else if (req.body.user_option === 'create'){
 
         knex('households').where({email: req.body.new_household_email}).then(function(data){
           if(data.length > 0){
-            res.render('new_account', {emailHouseTaken: true, emailTaken: false, error: false, values: req.body});
+            res.render('new_account', {emailHouseTaken: true, invalidEmail: false, emailTaken: false, error: false, values: req.body});
           }
           else {
         bcrypt.hash(req.body.new_household_password, Number(process.env.SALT) || 8, function(err, hash){

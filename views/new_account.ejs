@@ -15,7 +15,7 @@
 
 <div class="container">
 
-<% if(error === true || emailTaken === true || emailHouseTaken === true) { %>
+<% if(error === true || emailTaken === true || emailHouseTaken === true || invalidEmail === true ) { %>
       <div class="row" id="join_household">
         <div class="col-md-6">
           <h3>Enter your user information</h3>
@@ -104,6 +104,11 @@
           <% if(emailHouseTaken === true) { %>
             <p class="error">
               Email is already taken, please choose a different one.
+            </p>
+          <% } %>
+          <% if(invalidEmail === true) { %>
+            <p class="error">
+              Not a valid email.
             </p>
           <% } %>
         </div>
