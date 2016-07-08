@@ -20,7 +20,15 @@
       <form method="POST">
         <div class="form-group">
           <label for="email">Email:</label>
+
+          <% if(emailNotFound === true){ %>
+            <input type="email" class="form-control" name="email" value="<%= emailMatch.email %>">
+          <p class="error">
+            Sorry, I could not find a match to your email, please try again.
+          </p>
+        <% } else { %>
           <input type="email" class="form-control" name="email">
+          <% } %>
         </div>
         <div class="form-group">
           <label for="password">Password:</label>

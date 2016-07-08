@@ -10,7 +10,7 @@ var moment = require('moment');
 
 router.get('/', function(req, res, next) {
   if (req.session.id === undefined) {
-    res.render('index');
+    res.render('index', {emailNotFound: false});
   } else if (req.session.is_admin === true) {
     res.redirect('/households/' + req.session.household_id);
   } else {
@@ -25,6 +25,9 @@ router.get('/new', function(req, res, next){
 router.post('/', function(req, res, next){
   var email = req.body.email;
   knex('users').where({email: email.toLowerCase()}).then(function(data){
+    if(data.length === 0){
+      res.render('index', {emailNotFound: true, emailMatch: req.body});
+    }
     bcrypt.compare(req.body.password, data[0].password, function(err, result){
 
       if(err){
