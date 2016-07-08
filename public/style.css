@@ -2,7 +2,7 @@ body {
   padding-top:70px;
   background-color: rgb(71, 81, 104);
   background-image: url("./home2.jpg");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 

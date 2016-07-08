@@ -75,11 +75,11 @@ router.put('/tasks/:id/toggle', function(req, res) {
   .then(function(task) {
     if (task[0].is_complete === true) {
       return knex('tasks').update({is_complete:false,completion_date:null}).where('id',req.params.id).then(function() {
-        res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+        res.redirect('/households/' + req.session.household_id + '/users/' + task[0].user_id);
       });
     } else {
       return knex('tasks').update({is_complete:true,completion_date:'now'}).where('id',req.params.id).then(function() {
-        res.redirect('/households/' + req.session.household_id + '/users/' + req.session.id);
+        res.redirect('/households/' + req.session.household_id + '/users/' + task[0].user_id);
       });
     }
   });

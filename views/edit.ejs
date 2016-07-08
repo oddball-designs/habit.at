@@ -24,11 +24,11 @@
           <div class="form-group">
             <div class="tasks">
               <label for="title">Task name:</label>
-              <input type="text" value="<%= task.title %>" class="form-control" name="title">
+              <input type="text" value="<%= task.title %>" class="form-control" name="title" required>
             </div>
             <div class="tasks">
               <label for="description">Task description</label>
-              <textarea type="text" rows="5" class="form-control" name="description"><%= task.description %></textarea>
+              <textarea type="text" rows="5" class="form-control" name="description" required=""><%= task.description %></textarea>
             </div>
             <div class="tasks">
               <label for="user">Assigned to:</label>
@@ -53,11 +53,11 @@
             </div>
             <div class="tasks">
               <label for="date">Date Due:</label>
-              <input type="date" value="<%= task.due_date %>" class="form-control" name="date_due">
+              <input type="date" value="<%= task.due_date %>" class="form-control" name="date_due" required>
             </div>
             <div class="tasks">
               <label for="time_due">Time Due:</label>
-              <input type="time" value="<%= task.time_due %>"class="form-control" name="time_due">
+              <input type="time" value="<%= task.time_due %>"class="form-control" name="time_due" required>
             </div>
 
           </div>
