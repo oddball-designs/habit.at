@@ -53,6 +53,21 @@ var newHouseRules = new Checkit({
   });
 
 
+  var logIn = new Checkit({
+    email: [
+      { rule: 'required',
+        message: 'We definitely need your email address'
+      },
+      { rule: 'email',
+      message: 'you must enter something that at least looks like an email!'
+    }],
+    password:
+      { rule: 'required',
+        message: 'Passwords are required! Otherwise how will we know if you are who you say you are!'
+      }
+    });
+
+
 
 var checkSignup = function(data){
   return rules.run(data);
@@ -62,10 +77,14 @@ var checkNewHouse = function(data){
   return newHouseRules.run(data);
 };
 
+var checkLogIn = function(data){
+  return logIn.run(data);
+};
 
 module.exports = {
   checkSignup: checkSignup,
-  newHouseRules: newHouseRules
+  newHouseRules: newHouseRules,
+  checkLogIn: checkLogIn
 };
 
 

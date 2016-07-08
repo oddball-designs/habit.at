@@ -26,6 +26,11 @@
           <p class="error">
             Sorry, I could not find a match to your email, please try again.
           </p>
+          <% } else if(error) { %>
+            <input type="email" class="form-control" name="email" value="<%= emailMatch.email %>">
+          <p class="error">
+            <%= error.errors.email.message %>
+          </p>
         <% } else { %>
           <input type="email" class="form-control" name="email">
           <% } %>
