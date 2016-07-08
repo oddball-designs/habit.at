@@ -6,11 +6,12 @@ var knex = require('../db/knex');
 var bcrypt = require('bcrypt');
 var request = require('request');
 var moment = require('moment');
+var resource = require('../models/resource');
 
 
 router.get('/', function(req, res, next) {
   if (req.session.id === undefined) {
-    res.render('index');
+    res.render('index', {wrongPassword: false, emailNotFound: false, error: false});
   } else if (req.session.is_admin === true) {
     res.redirect('/households/' + req.session.household_id);
   } else {
@@ -19,17 +20,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next){
-  res.render('new_account', {error: false, emailTaken: false, emailHouseTaken: false});
+  res.render('new_account', {wrongPassword: false, invalidPassword: false, error: false, emailTaken: false, invalidEmail: false, emailHouseTaken: false});
 });
 
 router.post('/', function(req, res, next){
-  knex('users').where({email: req.body.email}).then(function(data){
+  var email = req.body.email;
+  resource.checkLogIn(req.body).then(function(validated){
+  knex('users').where({email: email.toLowerCase()}).then(function(data){
+    if(data.length === 0){
+      res.render('index', {wrongPassword: false, emailNotFound: true, error: false, emailMatch: req.body});
+    }
     bcrypt.compare(req.body.password, data[0].password, function(err, result){
-
       if(err){
         console.log(err);
       }
-      //next(err);
       else {
         if(result){
           req.session.id = data[0].id;
@@ -40,10 +44,13 @@ router.post('/', function(req, res, next){
           res.redirect('/');
         }
         else{
-          res.send("Your email or password was invalid.");
+          res.render('index', {wrongPassword: true, emailNotFound: false, error: false, emailMatch: req.body});
         }
       }
     });
+  });
+}).catch(function(err){
+      res.render('index', {error: err, emailNotFound: false, wrongPassword: false, emailMatch: req.body});
   });
 });
 

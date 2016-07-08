@@ -79,21 +79,33 @@ router.post('/', function(req, res, next){
 
   knex('users').where({email: req.body.user_email}).then(function(data){
     if(data.length > 0){
-      res.render('new_account', {emailTaken: true, emailHouseTaken: false, error: false, values: req.body});
+      res.render('new_account', {invalidPassword: false, emailTaken: true, invalidEmail: false, emailHouseTaken: false, error: false, values: req.body});
     }
     else {
       resource.checkSignup(req.body).then(function(validated){
       if (req.body.user_option === 'join') {
+
+        var householdEmail = req.body.household_email;
+          knex('households').where({email: householdEmail.toLowerCase()}).then(function(data){
+
           knex('households').where({email: req.body.household_email}).then(function(data){
+            if(data.length === 0){
+              res.render('new_account', {invalidPassword: false, invalidEmail: true, emailTaken: false, emailHouseTaken: false, error: false, values: req.body});
+            } else {
+
             bcrypt.compare(req.body.household_password, data[0].password, function(err, result){
-              if (result){
+              if(result === false){
+                res.render('new_account', {invalidPassword: true, invalidEmail: false, emailTaken: false, emailHouseTaken: false, error: false, values: req.body});
+              }
+              else {
                 bcrypt.hash(req.body.user_password, Number(process.env.SALT) || 5, function(err, hash){
+                  var email = req.body.user_email;
                   var userObj = {
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
                     username: req.body.username,
                     phone_number: req.body.tel1 + req.body.tel2 + req.body.tel3,
-                    email: req.body.user_email,
+                    email: email.toLowerCase(),
                     password: hash,
                     is_admin: false,
                     household_id: data[0].id
@@ -104,14 +116,15 @@ router.post('/', function(req, res, next){
                 });
               }
             });
-          });
-      }
+          }
+        });
+      });
+    }
       // if the household does not exist
       else if (req.body.user_option === 'create'){
-
         knex('households').where({email: req.body.new_household_email}).then(function(data){
           if(data.length > 0){
-            res.render('new_account', {emailHouseTaken: true, emailTaken: false, error: false, values: req.body});
+            res.render('new_account', {invalidPassword: false, emailHouseTaken: true, invalidEmail: false, emailTaken: false, error: false, values: req.body});
           }
           else {
         bcrypt.hash(req.body.new_household_password, Number(process.env.SALT) || 8, function(err, hash){
@@ -119,20 +132,22 @@ router.post('/', function(req, res, next){
             console.log(err);
           }
           else {
+            var newHouseholdEmail = req.body.new_household_email;
             var householdObj = {
               name: req.body.new_household_name,
-              email: req.body.new_household_email,
+              email: newHouseholdEmail.toLowerCase(),
               password:hash
             };
             knex('households').returning('id').insert(householdObj)
             .then(function(data){
               bcrypt.hash(req.body.user_password, Number(process.env.SALT) || 5, function(err, hash){
+                var email = req.body.user_email;
                 var userObj = {
                   first_name: req.body.first_name,
                   last_name: req.body.last_name,
                   username: req.body.username,
                   phone_number: req.body.tel1 + req.body.tel2 + req.body.tel3,
-                  email: req.body.user_email,
+                  email: email.toLowerCase(),
                   password: hash,
                   is_admin: true,
                   household_id: data[0]

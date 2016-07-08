@@ -34,7 +34,9 @@
       <% tasks.forEach(function(task) { %>
         <tr>
           <td>
-            <form method="POST" action="/households/<%=user.household_id%>/users/<%=user.id%>/tasks/<%=task.id%>/toggle?_method=PUT">
+            <form method="POST" action="/households/<%=user.household_id%>/users/<%=task.user_id%>/tasks/<%=task.id%>/toggle?_method=PUT">
+            <%console.log(user)%>
+            <%console.log(task)%>
               <% if (task.is_complete) { %>
                 <button class="btn btn-sm btn-block btn-success">Complete!</button>
               <% } else { %>
