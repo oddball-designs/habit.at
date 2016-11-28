@@ -15,3 +15,8 @@ If not logged-in as an administrator, the user is greeted with an overview of al
 Additionally, using Twilio, users have the option of receiving a text message once daily with a reminder of all their given tasks.
 
 The application was built by Stephanie Ogburn, Philip Reitz, and Ryan Mackey using Node, Express, Postgresql, HTML, CSS, and JavaScript.
+
+View the site: http://habit-at.herokuapp.com/
+
+Sample login: homer@thesimpsons.com
+pswd: 1234
